@@ -18,7 +18,7 @@ import { Suspense } from 'react';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { Loader2, PlusCircle } from 'lucide-react';
+import { Loader2, PlusCircle, Users, CreditCard } from 'lucide-react';
 
 type ActionState = {
   error?: string;
@@ -46,27 +46,49 @@ function ManageSubscription() {
         <CardTitle>Team Subscription</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <div className="mb-4 sm:mb-0">
-              <p className="font-medium">
-                Current Plan: {teamData?.planName || 'Free'}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {teamData?.subscriptionStatus === 'active'
-                  ? 'Billed monthly'
-                  : teamData?.subscriptionStatus === 'trialing'
-                  ? 'Trial period'
-                  : 'No active subscription'}
-              </p>
+        {!teamData ? (
+          <div className="animate-pulse space-y-4">
+            <div className="h-4 w-48 bg-gray-200 rounded"></div>
+            <div className="h-3 w-32 bg-gray-200 rounded"></div>
+          </div>
+        ) : teamData.subscriptionStatus === 'active' ||
+          teamData.subscriptionStatus === 'trialing' ? (
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <div className="mb-4 sm:mb-0">
+                <p className="font-medium">
+                  Current Plan: {teamData?.planName || 'Free'}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {teamData?.subscriptionStatus === 'active'
+                    ? 'Billed monthly'
+                    : 'Trial period'}
+                </p>
+              </div>
+              <form action={customerPortalAction}>
+                <Button type="submit" variant="outline">
+                  Manage Subscription
+                </Button>
+              </form>
             </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center text-center py-12">
+            <CreditCard className="h-12 w-12 text-orange-500 mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              No active subscription
+            </h3>
+            <p className="text-sm text-gray-500 max-w-sm mb-4">
+              You're currently on the Free plan. Upgrade to unlock premium
+              features for your team.
+            </p>
             <form action={customerPortalAction}>
               <Button type="submit" variant="outline">
                 Manage Subscription
               </Button>
             </form>
           </div>
-        </div>
+        )}
       </CardContent>
     </Card>
   );
@@ -111,7 +133,15 @@ function TeamMembers() {
           <CardTitle>Team Members</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">No team members yet.</p>
+          <div className="flex flex-col items-center justify-center text-center py-12">
+            <Users className="h-12 w-12 text-orange-500 mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              No team members yet
+            </h3>
+            <p className="text-sm text-gray-500 max-w-sm">
+              Invite your first team member below to start collaborating.
+            </p>
+          </div>
         </CardContent>
       </Card>
     );
