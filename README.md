@@ -1,8 +1,6 @@
-# Next.js SaaS Starter
+# Highline SaaS Starter
 
-This is a starter template for building a SaaS application using **Next.js** with support for authentication, Stripe integration for payments, and a dashboard for logged-in users.
-
-**Demo: [https://next-saas-start.vercel.app/](https://next-saas-start.vercel.app/)**
+A modern SaaS starter kit powered by **Next.js**, Postgres, and Stripe — with authentication, payments, and a dashboard for logged-in users.
 
 ## Features
 
@@ -27,8 +25,8 @@ This is a starter template for building a SaaS application using **Next.js** wit
 ## Getting Started
 
 ```bash
-git clone https://github.com/nextjs/saas-starter
-cd saas-starter
+git clone highline-saas-starter
+cd highline-saas-starter
 pnpm install
 ```
 
