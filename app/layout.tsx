@@ -5,8 +5,8 @@ import { getUser, getTeamForUser } from '@/lib/db/queries';
 import { SWRConfig } from 'swr';
 
 export const metadata: Metadata = {
-  title: 'Next.js SaaS Starter',
-  description: 'Get started quickly with Next.js, Postgres, and Stripe.'
+  title: 'Highline SaaS Starter',
+  description: 'Get started quickly with Highline SaaS Starter — Next.js, Postgres, and Stripe.'
 };
 
 export const viewport: Viewport = {
